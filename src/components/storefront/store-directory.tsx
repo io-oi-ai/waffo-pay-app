@@ -13,36 +13,21 @@ interface StoreDirectoryProps {
   stores: Storefront[];
 }
 
-const pastelCards = [
+const cardThemes = [
   {
-    background: "linear-gradient(180deg,#EAF2FF 0%,#FFFFFF 100%)",
-    shadow: "0 25px 60px rgba(77,109,255,0.18)",
-    accent: "#24307a",
+    bg: "linear-gradient(140deg, rgba(47,64,150,0.95), rgba(12,17,52,0.95))",
+    glow: "0 35px 120px rgba(91,109,255,0.35)",
+    border: "rgba(117,138,255,0.7)",
   },
   {
-    background: "linear-gradient(180deg,#FFF5DA 0%,#FFFFFF 100%)",
-    shadow: "0 25px 60px rgba(255,179,0,0.2)",
-    accent: "#9a5b00",
+    bg: "linear-gradient(140deg, rgba(70,15,65,0.95), rgba(12,10,32,0.95))",
+    glow: "0 35px 120px rgba(255,106,189,0.35)",
+    border: "rgba(255,152,215,0.6)",
   },
   {
-    background: "linear-gradient(180deg,#FDE7F3 0%,#FFFFFF 100%)",
-    shadow: "0 25px 60px rgba(240,117,182,0.2)",
-    accent: "#8a2c5c",
-  },
-  {
-    background: "linear-gradient(180deg,#E2FFF6 0%,#FFFFFF 100%)",
-    shadow: "0 25px 60px rgba(72,194,159,0.2)",
-    accent: "#0f6c57",
-  },
-  {
-    background: "linear-gradient(180deg,#F7E7FF 0%,#FFFFFF 100%)",
-    shadow: "0 25px 60px rgba(166,110,255,0.2)",
-    accent: "#5a2ca0",
-  },
-  {
-    background: "linear-gradient(180deg,#FFEFE4 0%,#FFFFFF 100%)",
-    shadow: "0 25px 60px rgba(245,144,96,0.25)",
-    accent: "#8a391d",
+    bg: "linear-gradient(140deg, rgba(18,79,86,0.95), rgba(7,26,33,0.95))",
+    glow: "0 35px 120px rgba(35,211,238,0.35)",
+    border: "rgba(104,229,255,0.6)",
   },
 ];
 
@@ -78,15 +63,15 @@ export function StoreDirectory({ stores }: StoreDirectoryProps) {
 
   return (
     <div className="space-y-8">
-      <div className="rounded-[28px] border border-black/5 bg-white/70 p-6 shadow-[0_40px_100px_rgba(15,23,42,0.12)] backdrop-blur-lg">
+      <div className="rounded-[32px] border border-white/10 bg-gradient-to-br from-[#161a3a] via-[#0c1126] to-[#060914] p-6 shadow-[0_60px_160px_rgba(0,0,0,0.65)]">
         <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
           <div>
-            <p className="text-xs uppercase tracking-[0.4em] text-brand-500/80">Shop direct</p>
-            <h2 className="mt-2 text-3xl font-semibold text-slate-900">
-              Choose an official publisher store
+            <p className="text-xs uppercase tracking-[0.4em] text-white/60">App Pay curated stores</p>
+            <h2 className="mt-2 text-4xl font-semibold text-white">
+              官方直充 · Bonus Packs · Local Wallets
             </h2>
-            <p className="mt-2 max-w-2xl text-sm text-slate-600">
-              Every listing is curated with bonus currency or limited bundles. Search for a game and filter by payment method or App Pay exclusives.
+            <p className="mt-2 max-w-2xl text-sm text-white/70">
+              Search your title, compare exclusive incentives,并按支付方式筛选（Visa / PayPay / Konbini 等）。
             </p>
           </div>
           <div className="flex w-full flex-col gap-3 sm:flex-row sm:items-center sm:justify-end">
@@ -94,10 +79,10 @@ export function StoreDirectory({ stores }: StoreDirectoryProps) {
               placeholder="Search store or game (e.g. A3!)"
               value={query}
               onChange={(event) => setQuery(event.target.value)}
-              className="bg-white"
+              className="border-white/20 bg-white/5 text-white placeholder:text-white/50"
             />
             <select
-              className="w-full rounded-2xl border border-black/10 bg-white px-4 py-2.5 text-sm text-slate-700 shadow-inner sm:w-56"
+              className="w-full rounded-2xl border border-white/20 bg-white/5 px-4 py-2.5 text-sm text-white sm:w-56"
               value={payment ?? ""}
               onChange={(event) =>
                 setPayment(event.target.value ? (event.target.value as PaymentMethod) : null)
@@ -105,7 +90,7 @@ export function StoreDirectory({ stores }: StoreDirectoryProps) {
             >
               <option value="">Payment method</option>
               {"Visa Mastercard PayPay Line Pay Konbini".split(" ").map((method) => (
-                <option key={method} value={method} className="bg-white text-slate-900">
+                <option key={method} value={method} className="bg-[#0e1227] text-white">
                   {method}
                 </option>
               ))}
@@ -119,8 +104,8 @@ export function StoreDirectory({ stores }: StoreDirectoryProps) {
               onClick={() => setTagFilter((prev) => (prev === filter.value ? null : filter.value))}
               className={`rounded-full px-4 py-1 text-xs font-semibold uppercase tracking-wide transition ${
                 tagFilter === filter.value
-                  ? "bg-slate-900 text-white shadow-md"
-                  : "bg-slate-100 text-slate-600"
+                  ? "bg-white text-[#070b1d] shadow-lg"
+                  : "bg-white/10 text-white/70"
               }`}
             >
               {filter.label}
@@ -131,27 +116,26 @@ export function StoreDirectory({ stores }: StoreDirectoryProps) {
 
       <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
         {filteredStores.map((store, index) => {
-          const theme = pastelCards[index % pastelCards.length];
+          const theme = cardThemes[index % cardThemes.length];
           return (
             <Link key={store.slug} href={`/stores/${store.slug}`}>
               <article
-                className="group flex h-full flex-col overflow-hidden rounded-[30px] border border-transparent px-0 pb-0"
-                style={{ backgroundImage: theme.background, boxShadow: theme.shadow }}
+                className="group flex h-full flex-col overflow-hidden rounded-[30px] border backdrop-blur-3xl"
+                style={{ backgroundImage: theme.bg, boxShadow: theme.glow, borderColor: theme.border }}
               >
                 <div className="relative h-48 overflow-hidden">
                   <div
                     className="absolute inset-0 transition duration-500 group-hover:scale-105"
                     style={{
-                      backgroundImage: `linear-gradient(140deg, rgba(255,255,255,0.1), rgba(0,0,0,0.2)), url(${store.heroImage})`,
+                      backgroundImage: `linear-gradient(130deg, rgba(0,0,0,0.3), rgba(0,0,0,0.6)), url(${store.heroImage})`,
                       backgroundSize: "cover",
                       backgroundPosition: "center",
-                      mixBlendMode: "multiply",
                     }}
                   />
                   <div className="relative flex h-full flex-col justify-between p-5">
                     <div className="flex items-center gap-3">
                       <div
-                        className="h-12 w-12 rounded-2xl border border-white/40"
+                        className="h-12 w-12 rounded-2xl border border-white/60"
                         style={{
                           backgroundImage: `url(${store.logo})`,
                           backgroundSize: "cover",
@@ -159,7 +143,7 @@ export function StoreDirectory({ stores }: StoreDirectoryProps) {
                         }}
                       />
                       <div>
-                        <p className="text-xs text-white/80">{store.companyName}</p>
+                        <p className="text-xs text-white/70">{store.companyName}</p>
                         <p className="text-lg font-semibold text-white">{store.displayName}</p>
                       </div>
                     </div>
@@ -167,43 +151,37 @@ export function StoreDirectory({ stores }: StoreDirectoryProps) {
                       <Badge variant="outline" className="border-white/60 text-white">
                         {store.tagline}
                       </Badge>
-                      <p className="mt-2 text-xl font-semibold text-white">
-                        {store.highlightSlogan}
-                      </p>
+                      <p className="mt-2 text-xl font-semibold text-white">{store.highlightSlogan}</p>
                     </div>
                   </div>
                 </div>
-                <div className="flex flex-1 flex-col gap-4 p-5">
-                  <p className="text-sm text-slate-700">{store.summary}</p>
+                <div className="flex flex-1 flex-col gap-4 p-5 text-white">
+                  <p className="text-sm text-white/75">{store.summary}</p>
                   <div className="flex flex-wrap gap-2">
                     {store.features.map((feature) => (
-                      <Badge
-                        key={feature}
-                        variant="outline"
-                        className="border-slate-200 bg-white/70 text-slate-600"
-                      >
+                      <Badge key={feature} variant="outline" className="border-white/20 bg-white/10 text-white/80">
                         {feature}
                       </Badge>
                     ))}
                   </div>
-                  <div className="flex flex-wrap items-center gap-2 text-xs text-slate-600">
+                  <div className="flex flex-wrap items-center gap-2 text-xs text-white/70">
                     {store.paymentMethods.slice(0, 5).map((method) => (
-                      <span key={method} className="rounded-full border border-slate-200 px-3 py-1">
+                      <span key={method} className="rounded-full border border-white/20 px-3 py-1">
                         {method}
                       </span>
                     ))}
                   </div>
-                  <div className="flex items-center justify-between rounded-2xl border border-white/60 bg-white/80 px-4 py-3">
+                  <div className="flex items-center justify-between rounded-2xl border border-white/20 bg-white/10 px-4 py-3">
                     <div>
-                      <p className="text-xs uppercase tracking-[0.3em] text-slate-500">From</p>
-                      <p className="text-lg font-semibold text-slate-900">
+                      <p className="text-xs uppercase tracking-[0.3em] text-white/60">From</p>
+                      <p className="text-lg font-semibold text-white">
                         {formatCurrency(
                           Math.min(...store.products.map((product) => product.price)),
                           "JPY"
                         )}
                       </p>
                     </div>
-                    <Button variant="primary" size="sm" className="bg-slate-900 text-white shadow-lg">
+                    <Button variant="primary" size="sm" className="bg-white text-[#070b1d] shadow-lg">
                       Shop now
                     </Button>
                   </div>
@@ -213,7 +191,7 @@ export function StoreDirectory({ stores }: StoreDirectoryProps) {
           );
         })}
         {!filteredStores.length && (
-          <div className="rounded-3xl border border-dashed border-black/10 bg-white p-10 text-center text-slate-500">
+          <div className="rounded-3xl border border-dashed border-white/10 bg-[#0d1224] p-10 text-center text-white/60">
             No stores match the current filters. Try adjusting your search.
           </div>
         )}

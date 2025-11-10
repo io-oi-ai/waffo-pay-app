@@ -3,13 +3,13 @@
 @tailwind utilities;
 
 :root {
-  --background: #f4f5fb;
-  --foreground: #0f172a;
-  --card: #ffffff;
-  --muted: #7b7f9e;
-  --border: rgba(15, 23, 42, 0.08);
-  --radius: 18px;
-  --font-geist-sans: "Inter", "Noto Sans JP", "Circular Std", system-ui, sans-serif;
+  --background: #020617;
+  --foreground: #f8fbff;
+  --card: rgba(5, 10, 30, 0.85);
+  --muted: #8890b3;
+  --border: rgba(255, 255, 255, 0.08);
+  --radius: 20px;
+  --font-geist-sans: "Inter", "Noto Sans JP", "Space Grotesk", system-ui, sans-serif;
   --font-geist-mono: "JetBrains Mono", "SFMono-Regular", monospace;
 }
 
@@ -27,21 +27,20 @@
     background-color: var(--background);
     font-family: var(--font-geist-sans), system-ui, -apple-system, sans-serif;
     min-height: 100vh;
-    background-image: linear-gradient(180deg, #fdf6ff 0%, rgba(253, 246, 255, 0) 40%),
-      radial-gradient(circle at 15% 20%, rgba(189, 228, 255, 0.45), transparent 35%),
-      radial-gradient(circle at 80% 0%, rgba(255, 231, 221, 0.45), transparent 30%),
-      linear-gradient(180deg, #f7f8ff 0%, #f4f5fb 60%);
+    background-image: radial-gradient(circle at 20% 20%, rgba(129, 140, 248, 0.25), transparent 50%),
+      radial-gradient(circle at 80% 0%, rgba(236, 72, 153, 0.18), transparent 45%),
+      linear-gradient(135deg, #01030c, #030922 65%, #040f33);
   }
 
   ::selection {
-    background: rgba(255, 149, 196, 0.45);
-    color: #0f172a;
+    background: rgba(129, 140, 248, 0.45);
+    color: #ffffff;
   }
 }
 
 @layer components {
   .glass-panel {
-    @apply rounded-[var(--radius)] border border-black/5 bg-white/70 shadow-[0_25px_60px_rgba(15,23,42,0.12)] backdrop-blur-xl;
+    @apply rounded-[var(--radius)] border border-white/10 bg-white/5 shadow-[0_35px_120px_rgba(0,0,0,0.5)] backdrop-blur-2xl;
   }
 
   .grid-overlay {
