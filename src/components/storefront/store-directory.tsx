@@ -125,11 +125,11 @@ export function StoreDirectory({ stores }: StoreDirectoryProps) {
                 className="group flex h-full flex-col overflow-hidden rounded-[30px] border backdrop-blur-3xl"
                 style={{ backgroundImage: theme.bg, boxShadow: theme.glow, borderColor: theme.border }}
               >
-                <div className="relative h-48 overflow-hidden">
+                <div className="relative h-60 overflow-hidden">
                   <div
                     className="absolute inset-0 transition duration-500 group-hover:scale-105"
                     style={{
-                      backgroundImage: `linear-gradient(130deg, rgba(0,0,0,0.3), rgba(0,0,0,0.6)), url(${store.heroImage})`,
+                      backgroundImage: `linear-gradient(150deg, rgba(0,0,0,0.25), rgba(0,0,0,0.65)), url(${store.heroImage})`,
                       backgroundSize: "cover",
                       backgroundPosition: "center",
                     }}
