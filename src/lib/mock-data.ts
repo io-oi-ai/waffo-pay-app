@@ -7,8 +7,7 @@ export const storefronts: Storefront[] = [
     gameTitle: "A3! (Act! Addict! Actors!)",
     logo:
       "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=200&q=80",
-    heroImage:
-      "https://images.unsplash.com/photo-1500534319109-2f56fabc3302?auto=format&fit=crop&w=1600&q=80",
+    heroImage: "/app-pay-banner.png",
     tagline: "Limited Fest · Manga Remix",
     highlightSlogan: "Extra diamonds + character frames",
     summary:
@@ -39,7 +38,7 @@ export const storefronts: Storefront[] = [
         baseAmount: 820,
         bonusAmount: 120,
         description: "Anniversary art + 820 diamonds with 120 bonus",
-        icon: "https://images.unsplash.com/photo-1520974798311-35179017a9d8?w=400",
+        icon: "/nogizaka-pack-1.png",
         gameItemId: "A3_PACK_LIMITED",
         limited: true,
         promotion: {
@@ -59,7 +58,7 @@ export const storefronts: Storefront[] = [
         baseAmount: 720,
         bonusAmount: 60,
         description: "Regular charge with +60 bonus",
-        icon: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400",
+        icon: "/nogizaka-pack-2.png",
         gameItemId: "A3_DIA_720",
         promotion: {
           type: "bonus",
@@ -76,7 +75,7 @@ export const storefronts: Storefront[] = [
         baseAmount: 250,
         bonusAmount: 30,
         description: "Beginner items plus 30 bonus diamonds",
-        icon: "https://images.unsplash.com/photo-1512499617640-c2f999098c01?w=400",
+        icon: "/nogizaka-pack-3.png",
         gameItemId: "A3_STARTER",
         promotion: {
           type: "bonus",
@@ -97,8 +96,7 @@ export const storefronts: Storefront[] = [
     gameTitle: "Stella Stage Online",
     logo:
       "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=200&q=80",
-    heroImage:
-      "https://images.unsplash.com/photo-1511512578047-dfb367046420?w=1600",
+    heroImage: "/banner_LQ9rVbRlVFo.png",
     tagline: "Galaxy Expedition: Neon Act",
     highlightSlogan: "Crystals 10% cheaper than in-game",
     summary:
@@ -176,8 +174,7 @@ export const storefronts: Storefront[] = [
     gameTitle: "Mirage Saga Reversal",
     logo:
       "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=200&q=80",
-    heroImage:
-      "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=1600&q=80",
+    heroImage: "/banner_NKCZbAFqfSj.png",
     tagline: "Deep Realm Anime Drop",
     highlightSlogan: "App Pay limited gear bundles",
     summary:
@@ -255,8 +252,7 @@ export const storefronts: Storefront[] = [
     gameTitle: "Starbeat!!",
     logo:
       "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=200&q=80",
-    heroImage:
-      "https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=1600&q=80",
+    heroImage: "/app-pay-banner-2.png",
     tagline: "City Pop Encore",
     highlightSlogan: "Fanboxes + 2x sticker packs",
     summary:
@@ -329,8 +325,7 @@ export const storefronts: Storefront[] = [
     gameTitle: "Ninja Rewrite Online",
     logo:
       "https://images.unsplash.com/photo-1503602642458-232111445657?auto=format&fit=crop&w=200&q=80",
-    heroImage:
-      "https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=1600&q=80",
+    heroImage: "/banner_aoh6OvTh9c8.png",
     tagline: "Stealth Ops Reloaded",
     highlightSlogan: "Camo skins + weapon shards",
     summary:
@@ -391,8 +386,7 @@ export const storefronts: Storefront[] = [
     gameTitle: "Hyper Drift: Neon",
     logo:
       "https://images.unsplash.com/photo-1503023345310-bd7c1de61c7d?auto=format&fit=crop&w=200&q=80",
-    heroImage:
-      "https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=1600&q=80",
+    heroImage: "/banner_LQ9rVbRlVFo.png",
     tagline: "Street Festival Drop",
     highlightSlogan: "Blueprints + boost chips",
     summary:
