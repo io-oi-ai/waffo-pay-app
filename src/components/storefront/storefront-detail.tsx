@@ -35,6 +35,8 @@ export function StorefrontDetail({ store }: StorefrontDetailProps) {
     currency: string;
   } | null>(null);
   const [currentPhase, setCurrentPhase] = useState<OrderPhase | "idle">("idle");
+  const [showCheckout, setShowCheckout] = useState(false);
+  const [checkoutStatus, setCheckoutStatus] = useState<"idle" | "success" | "failed">("idle");
 
   const productGroups = useMemo(() => {
     return store.products.reduce<Record<string, Product[]>>((groups, product) => {
@@ -69,6 +71,8 @@ export function StorefrontDetail({ store }: StorefrontDetailProps) {
       setStatusMessage("Please enter your player ID before continuing");
       return;
     }
+    setShowCheckout(true);
+    setCheckoutStatus("idle");
     setIsSubmitting(true);
     setSelectedProduct(product);
     setOrderSummary(null);
@@ -95,6 +99,7 @@ export function StorefrontDetail({ store }: StorefrontDetailProps) {
       const data = (await response.json()) as MockOrderResponse;
       setLastPaymentMethod(paymentMethod);
       setOrderSummary({ id: data.orderId, amount: data.amount, currency: data.currency });
+      setCheckoutStatus("success");
       await playbackTimeline(data.timeline);
       if (data.timeline.every((step) => step.phase !== "failed")) {
         setStatusMessage("Payment confirmed. Items will arrive within a few minutes.");
@@ -102,6 +107,7 @@ export function StorefrontDetail({ store }: StorefrontDetailProps) {
     } catch (error) {
       setStatus("failed");
       setStatusMessage(error instanceof Error ? error.message : "Payment simulation failed");
+      setCheckoutStatus("failed");
     } finally {
       setIsSubmitting(false);
     }
@@ -297,6 +303,56 @@ export function StorefrontDetail({ store }: StorefrontDetailProps) {
           These links satisfy Japanese Tokusho-hō, Payment Services Act, Terms, Privacy, and Cancellation policies.
         </p>
       </section>
+      {showCheckout && selectedProduct && (
+        <div className="fixed inset-0 z-20 flex items-center justify-center bg-black/70 px-4 py-10">
+          <div className="w-full max-w-lg rounded-[28px] border border-white/10 bg-[#050812] p-6 shadow-[0_30px_80px_rgba(0,0,0,0.6)]">
+            <div className="flex items-center justify-between">
+              <h4 className="text-lg font-semibold text-white">Confirm purchase</h4>
+              <button
+                className="text-white/60 hover:text-white"
+                onClick={() => {
+                  setShowCheckout(false);
+                  setCheckoutStatus("idle");
+                }}
+              >
+                ✕
+              </button>
+            </div>
+            <div className="mt-4 space-y-3 text-sm text-white/80">
+              <p className="text-base text-white">{selectedProduct.name}</p>
+              <p>Payment method: {paymentMethod}</p>
+              <p>Player ID: {userId}</p>
+              <p className="text-xl font-semibold text-white">
+                {formatCurrency(selectedProduct.price, selectedProduct.currency)}
+              </p>
+            </div>
+            <div className="mt-6 flex flex-col gap-3">
+              <Button onClick={() => startPurchase(selectedProduct)} disabled={isSubmitting} className="bg-white text-[#070b1d]">
+                {isSubmitting ? "Processing..." : "Confirm and pay"}
+              </Button>
+              <button
+                className="text-xs text-white/50 hover:text-white"
+                onClick={() => {
+                  setShowCheckout(false);
+                  setCheckoutStatus("idle");
+                }}
+              >
+                Cancel
+              </button>
+            </div>
+            {checkoutStatus === "success" && (
+              <div className="mt-4 rounded-2xl border border-emerald-400/30 bg-emerald-500/10 p-4 text-sm text-emerald-200">
+                Payment confirmed. Redirecting back to storefront…
+              </div>
+            )}
+            {checkoutStatus === "failed" && (
+              <div className="mt-4 rounded-2xl border border-rose-400/40 bg-rose-500/10 p-4 text-sm text-rose-200">
+                Payment failed. Please retry or switch payment method.
+              </div>
+            )}
+          </div>
+        </div>
+      )}
     </div>
   );
 }
