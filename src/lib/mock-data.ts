@@ -9,7 +9,7 @@ export const storefronts: Storefront[] = [
       "https://images.ctfassets.net/o8h5c4rqlsvy/1Hms63/015f-logo/a3-logo.png",
     heroImage:
       "https://images.unsplash.com/photo-1500534319109-2f56fabc3302?auto=format&fit=crop&w=1600&q=80",
-    tagline: "限定フェス / Manga Remix",
+    tagline: "Limited Fest · Manga Remix",
     highlightSlogan: "Extra diamonds + character frames",
     summary:
       "Collab event store with anime storyboard backgrounds, autograph cards, and PayPay-ready checkout for Japanese fans.",

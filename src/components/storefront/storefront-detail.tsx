@@ -143,7 +143,7 @@ export function StorefrontDetail({ store }: StorefrontDetailProps) {
               ))}
             </div>
             <p className="mt-4 text-xs text-white/60">
-              Secured by App Pay • 通常数分钟内完成发货。
+              Secured by App Pay • Most orders fulfil within a couple of minutes.
             </p>
           </div>
         </div>
@@ -152,7 +152,7 @@ export function StorefrontDetail({ store }: StorefrontDetailProps) {
       <section className="rounded-[28px] border border-white/10 bg-[#0b1225] p-6 shadow-[0_30px_90px_rgba(0,0,0,0.45)]">
         <h2 className="text-xl font-semibold text-white">Identify your account</h2>
         <p className="mt-2 text-sm text-white/70">
-          输入 {store.userIdentifierLabel}，用于支付完成后的自动发货。
+          Enter your {store.userIdentifierLabel}; we’ll deliver directly to your in-game inbox once payment clears.
         </p>
         <div className="mt-4 grid gap-4 md:grid-cols-2">
           <Input
@@ -174,7 +174,7 @@ export function StorefrontDetail({ store }: StorefrontDetailProps) {
           </select>
         </div>
         <p className="mt-2 text-xs text-white/50">
-          找不到 ID? 打开游戏 → 设置 → Account 即可查看。
+          Can’t find it? Open the game → Settings → Account and copy the ID here.
         </p>
       </section>
 
@@ -184,7 +184,7 @@ export function StorefrontDetail({ store }: StorefrontDetailProps) {
             <div className="flex flex-col gap-2 border-b border-white/5 pb-4 md:flex-row md:items-center md:justify-between">
               <div>
                 <p className="text-xs uppercase tracking-[0.4em] text-white/50">{category}</p>
-                <h3 className="text-2xl font-semibold text-white">精选套餐</h3>
+                <h3 className="text-2xl font-semibold text-white">Featured bundles</h3>
               </div>
               <p className="text-sm text-white/50">
                 {category.includes("Limited") ? "App Pay exclusive" : "Official direct top-up"}
@@ -239,7 +239,7 @@ export function StorefrontDetail({ store }: StorefrontDetailProps) {
       <section className="rounded-[28px] border border-white/10 bg-[#070c1a] p-6 shadow-[0_25px_70px_rgba(0,0,0,0.4)]">
         <h3 className="text-xl font-semibold text-white">Order progress</h3>
         <p className="mt-2 text-sm text-white/70">
-          整个支付链路 &lt; 1 分钟。每一步激活后会呈现高亮状态。
+          The entire flow takes under a minute. Each step glows the moment it completes.
         </p>
         <div className="mt-4 grid gap-4 md:grid-cols-3">
           <StatusCard
@@ -294,7 +294,7 @@ export function StorefrontDetail({ store }: StorefrontDetailProps) {
           ))}
         </div>
         <p className="mt-4 text-xs text-white/50">
-          满足日本市场 Tokusho-hō / Payment Services Act / Terms / Privacy / Cancellation 要求。
+          These links satisfy Japanese Tokusho-hō, Payment Services Act, Terms, Privacy, and Cancellation policies.
         </p>
       </section>
     </div>

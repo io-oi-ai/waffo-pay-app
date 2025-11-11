@@ -68,10 +68,11 @@ export function StoreDirectory({ stores }: StoreDirectoryProps) {
           <div>
             <p className="text-xs uppercase tracking-[0.4em] text-white/60">App Pay curated stores</p>
             <h2 className="mt-2 text-4xl font-semibold text-white">
-              官方直充 · Bonus Packs · Local Wallets
+              Official top-up channels · Bonus packs · Local wallets
             </h2>
             <p className="mt-2 max-w-2xl text-sm text-white/70">
-              Search your title, compare exclusive incentives,并按支付方式筛选（Visa / PayPay / Konbini 等）。
+              Search your title, compare exclusive incentives, and filter by wallets such as Visa, PayPay, Konbini, or
+              Line Pay.
             </p>
           </div>
           <div className="flex w-full flex-col gap-3 sm:flex-row sm:items-center sm:justify-end">

@@ -3,16 +3,16 @@ import { getStorefronts } from "@/lib/mock-data";
 
 const heroHighlights = [
   {
-    title: "Anime collab drops",
-    copy: "Limited manga frames, autograph assets, and neon UI",
+    title: "Publisher verified",
+    copy: "Every store is run by the IP owner with official pricing.",
   },
   {
-    title: "Wallets players love",
-    copy: "Visa / Mastercard / PayPay / Konbini / Line Pay",
+    title: "Wallet-ready checkout",
+    copy: "Visa · Mastercard · PayPay · Konbini · Line Pay.",
   },
   {
-    title: "< 60s fulfilment",
-    copy: "Webhook 99.99% + realtime order tracing",
+    title: "Under-60s fulfilment",
+    copy: "99.99% webhook success + live order trace.",
   },
 ];
 
@@ -25,12 +25,13 @@ export default function HomePage() {
         <div className="absolute inset-y-0 right-0 hidden w-1/2 blur-3xl md:block" style={{ background: "radial-gradient(circle at 40% 35%, rgba(56,189,248,0.55), transparent 55%)" }} />
         <div className="relative z-10 grid gap-8 md:grid-cols-[1.4fr_0.8fr]">
           <div>
-            <p className="text-xs uppercase tracking-[0.45em] text-white/60">App Pay universe</p>
+            <p className="text-xs uppercase tracking-[0.45em] text-white/60">Waffo Pay universe</p>
             <h1 className="mt-4 text-4xl font-semibold leading-tight text-white md:text-5xl">
-              游戏 & 漫画官方直充商城<br />Bonus packs + 本地支付一次搞定
+              Game & anime storefronts with exclusive bundles and local payments
             </h1>
             <p className="mt-3 text-base text-white/75">
-              精选发行商实时接入，带来角色主题礼包、PayPay / Konbini / Line Pay 等钱包，以及 60 秒内完成的安全发货流程。
+              Curated publishers ship collab skins, autograph frames, and wallet-friendly checkout. Tap in, pick your
+              universe, and let Waffo route the payment + fulfilment in seconds.
             </p>
           </div>
           <div className="flex flex-col gap-3">
