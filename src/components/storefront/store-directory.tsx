@@ -118,6 +118,7 @@ export function StoreDirectory({ stores }: StoreDirectoryProps) {
       <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
         {filteredStores.map((store, index) => {
           const theme = cardThemes[index % cardThemes.length];
+          const initials = store.displayName.charAt(0).toUpperCase();
           return (
             <Link key={store.slug} href={`/stores/${store.slug}`}>
               <article
@@ -135,14 +136,18 @@ export function StoreDirectory({ stores }: StoreDirectoryProps) {
                   />
                   <div className="relative flex h-full flex-col justify-between p-5">
                     <div className="flex items-center gap-3">
-                      <div
-                        className="h-12 w-12 rounded-2xl border border-white/60"
-                        style={{
-                          backgroundImage: `url(${store.logo})`,
-                          backgroundSize: "cover",
-                          backgroundPosition: "center",
-                        }}
-                      />
+                      <div className="relative h-12 w-12 overflow-hidden rounded-2xl border border-white/40 bg-white/10">
+                        {store.logo ? (
+                          <div
+                            className="absolute inset-0 bg-cover bg-center"
+                            style={{ backgroundImage: `url("${store.logo}")` }}
+                          />
+                        ) : (
+                          <span className="absolute inset-0 flex items-center justify-center text-sm font-semibold text-white/70">
+                            {initials}
+                          </span>
+                        )}
+                      </div>
                       <div>
                         <p className="text-xs text-white/70">{store.companyName}</p>
                         <p className="text-lg font-semibold text-white">{store.displayName}</p>
