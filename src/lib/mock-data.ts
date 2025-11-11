@@ -8,11 +8,11 @@ export const storefronts: Storefront[] = [
     logo:
       "https://images.ctfassets.net/o8h5c4rqlsvy/1Hms63/015f-logo/a3-logo.png",
     heroImage:
-      "https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=1600&q=80",
-    tagline: "Summer Troupe Anniversary",
-    highlightSlogan: "Extra diamonds + App Pay exclusives",
+      "https://images.unsplash.com/photo-1500534319109-2f56fabc3302?auto=format&fit=crop&w=1600&q=80",
+    tagline: "限定フェス / Manga Remix",
+    highlightSlogan: "Extra diamonds + character frames",
     summary:
-      "Official top-up channel operated by Liber Entertainment. Enjoy 20% bonus diamonds, commemorative bundles, and PayPay-ready checkout for fans in Japan.",
+      "Collab event store with anime storyboard backgrounds, autograph cards, and PayPay-ready checkout for Japanese fans.",
     companyName: "Liber Entertainment Inc.",
     contactEmail: "support@a3-app.jp",
     supportChannel: "Discord & in-app ticket",
@@ -39,7 +39,7 @@ export const storefronts: Storefront[] = [
         baseAmount: 820,
         bonusAmount: 120,
         description: "Anniversary art + 820 diamonds with 120 bonus",
-        icon: "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=400",
+        icon: "https://images.unsplash.com/photo-1520974798311-35179017a9d8?w=400",
         gameItemId: "A3_PACK_LIMITED",
         limited: true,
         promotion: {
@@ -59,7 +59,7 @@ export const storefronts: Storefront[] = [
         baseAmount: 720,
         bonusAmount: 60,
         description: "Regular charge with +60 bonus",
-        icon: "https://images.unsplash.com/photo-1523978591478-c753949ff840?w=400",
+        icon: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400",
         gameItemId: "A3_DIA_720",
         promotion: {
           type: "bonus",
@@ -76,7 +76,7 @@ export const storefronts: Storefront[] = [
         baseAmount: 250,
         bonusAmount: 30,
         description: "Beginner items plus 30 bonus diamonds",
-        icon: "https://images.unsplash.com/photo-1511512578047-dfb367046420?w=400",
+        icon: "https://images.unsplash.com/photo-1512499617640-c2f999098c01?w=400",
         gameItemId: "A3_STARTER",
         promotion: {
           type: "bonus",
@@ -98,11 +98,11 @@ export const storefronts: Storefront[] = [
     logo:
       "https://images.ctfassets.net/o8h5c4rqlsvy/2Logo/stella-stage.svg",
     heroImage:
-      "https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=1600&q=80",
-    tagline: "Galaxy Expedition Season 2",
+      "https://images.unsplash.com/photo-1511512578047-dfb367046420?w=1600",
+    tagline: "Galaxy Expedition: Neon Act",
     highlightSlogan: "Crystals 10% cheaper than in-game",
     summary:
-      "Seasonal battle pass, subscription perks, and flexible Line Pay installments for commanders gearing up for the new expedition.",
+      "Comic-style control room with season pass rewards, neon cockpit frames, and Line Pay installments for space idols.",
     companyName: "Stella Interactive Limited",
     contactEmail: "ops@stella-stage.com",
     supportChannel: "Slack Connect",
@@ -177,11 +177,11 @@ export const storefronts: Storefront[] = [
     logo:
       "https://images.ctfassets.net/o8h5c4rqlsvy/3Logo/mirage.svg",
     heroImage:
-      "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1600&q=80",
-    tagline: "Deep Realm Update",
+      "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=1600&q=80",
+    tagline: "Deep Realm Anime Drop",
     highlightSlogan: "App Pay limited gear bundles",
     summary:
-      "Optimized for local wallets in Japan: 99.99% of orders ship within 3 seconds post-payment with resilient webhook retries.",
+      "Designed like a manga ops room: PayPay + Google Pay routes, 99.99% webhook success, and holographic avatar skins.",
     companyName: "Mirage Digital GK",
     contactEmail: "merchant@mirage.io",
     supportChannel: "Email + PagerDuty",

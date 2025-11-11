@@ -30,6 +30,24 @@
     background-image: radial-gradient(circle at 20% 20%, rgba(129, 140, 248, 0.25), transparent 50%),
       radial-gradient(circle at 80% 0%, rgba(236, 72, 153, 0.18), transparent 45%),
       linear-gradient(135deg, #01030c, #030922 65%, #040f33);
+    position: relative;
+  }
+
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background-image: radial-gradient(
+        circle at 1px 1px,
+        rgba(255, 255, 255, 0.06),
+        transparent 35%
+      ),
+      radial-gradient(circle at 150px 100px, rgba(59, 130, 246, 0.12), transparent 55%),
+      radial-gradient(circle at 80% 20%, rgba(236, 72, 153, 0.12), transparent 45%);
+    background-size: 220px 220px, 100% 100%, 100% 100%;
+    opacity: 0.6;
+    pointer-events: none;
+    mix-blend-mode: screen;
   }
 
   ::selection {
