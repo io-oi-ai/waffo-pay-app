@@ -37,6 +37,7 @@ export function StorefrontDetail({ store }: StorefrontDetailProps) {
   const [currentPhase, setCurrentPhase] = useState<OrderPhase | "idle">("idle");
   const [showCheckout, setShowCheckout] = useState(false);
   const [checkoutStatus, setCheckoutStatus] = useState<"idle" | "success" | "failed">("idle");
+  const [pendingProduct, setPendingProduct] = useState<Product | null>(null);
 
   const productGroups = useMemo(() => {
     return store.products.reduce<Record<string, Product[]>>((groups, product) => {
@@ -66,13 +67,19 @@ export function StorefrontDetail({ store }: StorefrontDetailProps) {
     }
   };
 
-  const startPurchase = async (product: Product) => {
+  const openCheckout = (product: Product) => {
     if (!userId.trim()) {
       setStatusMessage("Please enter your player ID before continuing");
       return;
     }
+    setPendingProduct(product);
     setShowCheckout(true);
     setCheckoutStatus("idle");
+  };
+
+  const startPurchase = async () => {
+    if (!pendingProduct) return;
+    const product = pendingProduct;
     setIsSubmitting(true);
     setSelectedProduct(product);
     setOrderSummary(null);
@@ -103,6 +110,7 @@ export function StorefrontDetail({ store }: StorefrontDetailProps) {
       await playbackTimeline(data.timeline);
       if (data.timeline.every((step) => step.phase !== "failed")) {
         setStatusMessage("Payment confirmed. Items will arrive within a few minutes.");
+        setTimeout(() => setShowCheckout(false), 800);
       }
     } catch (error) {
       setStatus("failed");
@@ -228,11 +236,11 @@ export function StorefrontDetail({ store }: StorefrontDetailProps) {
                       </p>
                     </div>
                     <Button
-                      onClick={() => startPurchase(product)}
-                      disabled={isSubmitting}
+                      onClick={() => openCheckout(product)}
+                      disabled={isSubmitting && selectedProduct?.id === product.id}
                       className="bg-white text-[#070b1d]"
                     >
-                      {isSubmitting && selectedProduct?.id === product.id ? "Processing..." : "Buy now"}
+                      Buy now
                     </Button>
                   </div>
                 </article>
@@ -303,7 +311,7 @@ export function StorefrontDetail({ store }: StorefrontDetailProps) {
           These links satisfy Japanese Tokusho-hō, Payment Services Act, Terms, Privacy, and Cancellation policies.
         </p>
       </section>
-      {showCheckout && selectedProduct && (
+      {showCheckout && pendingProduct && (
         <div className="fixed inset-0 z-20 flex items-center justify-center bg-black/70 px-4 py-10">
           <div className="w-full max-w-lg rounded-[28px] border border-white/10 bg-[#050812] p-6 shadow-[0_30px_80px_rgba(0,0,0,0.6)]">
             <div className="flex items-center justify-between">
@@ -319,15 +327,15 @@ export function StorefrontDetail({ store }: StorefrontDetailProps) {
               </button>
             </div>
             <div className="mt-4 space-y-3 text-sm text-white/80">
-              <p className="text-base text-white">{selectedProduct.name}</p>
+              <p className="text-base text-white">{pendingProduct.name}</p>
               <p>Payment method: {paymentMethod}</p>
               <p>Player ID: {userId}</p>
               <p className="text-xl font-semibold text-white">
-                {formatCurrency(selectedProduct.price, selectedProduct.currency)}
+                {formatCurrency(pendingProduct.price, pendingProduct.currency)}
               </p>
             </div>
             <div className="mt-6 flex flex-col gap-3">
-              <Button onClick={() => startPurchase(selectedProduct)} disabled={isSubmitting} className="bg-white text-[#070b1d]">
+              <Button onClick={startPurchase} disabled={isSubmitting} className="bg-white text-[#070b1d]">
                 {isSubmitting ? "Processing..." : "Confirm and pay"}
               </Button>
               <button
@@ -335,6 +343,7 @@ export function StorefrontDetail({ store }: StorefrontDetailProps) {
                 onClick={() => {
                   setShowCheckout(false);
                   setCheckoutStatus("idle");
+                  setPendingProduct(null);
                 }}
               >
                 Cancel
