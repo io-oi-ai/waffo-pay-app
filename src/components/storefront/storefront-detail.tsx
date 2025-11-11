@@ -38,6 +38,7 @@ export function StorefrontDetail({ store }: StorefrontDetailProps) {
   const [showCheckout, setShowCheckout] = useState(false);
   const [checkoutStatus, setCheckoutStatus] = useState<"idle" | "success" | "failed">("idle");
   const [pendingProduct, setPendingProduct] = useState<Product | null>(null);
+  const [idError, setIdError] = useState<string | null>(null);
 
   const productGroups = useMemo(() => {
     return store.products.reduce<Record<string, Product[]>>((groups, product) => {
@@ -69,9 +70,10 @@ export function StorefrontDetail({ store }: StorefrontDetailProps) {
 
   const openCheckout = (product: Product) => {
     if (!userId.trim()) {
-      setStatusMessage("Please enter your player ID before continuing");
+      setIdError("Please enter your player ID first");
       return;
     }
+    setIdError(null);
     setPendingProduct(product);
     setShowCheckout(true);
     setCheckoutStatus("idle");
@@ -174,6 +176,7 @@ export function StorefrontDetail({ store }: StorefrontDetailProps) {
             onChange={(event) => setUserId(event.target.value)}
             placeholder={store.userIdentifierHint}
             className="border-white/20 bg-white/5 text-white placeholder:text-white/40"
+            aria-invalid={Boolean(idError)}
           />
           <select
             className="rounded-2xl border border-white/20 bg-white/5 px-4 py-2.5 text-sm text-white"
@@ -190,6 +193,7 @@ export function StorefrontDetail({ store }: StorefrontDetailProps) {
         <p className="mt-2 text-xs text-white/50">
           Can’t find it? Open the game → Settings → Account and copy the ID here.
         </p>
+        {idError && <p className="mt-2 text-xs text-rose-300">{idError}</p>}
       </section>
 
       <section className="space-y-6">
