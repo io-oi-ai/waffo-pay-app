@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from "react";
 import Link from "next/link";
+import { cn } from "@/lib/utils";
 import {
   Storefront,
   Product,
@@ -215,7 +216,12 @@ export function StorefrontDetail({ store }: StorefrontDetailProps) {
                 {category.includes("Limited") ? "App Pay exclusive" : "Official direct top-up"}
               </p>
             </div>
-            <div className="mt-6 grid gap-4 md:grid-cols-2">
+            <div
+              className={cn(
+                "mt-6 grid gap-4",
+                products.length > 1 ? "md:grid-cols-2" : "md:grid-cols-1"
+              )}
+            >
               {products.map((product) => (
                 <article
                   key={product.id}
