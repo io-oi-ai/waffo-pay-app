@@ -170,13 +170,6 @@ export function StoreDirectory({ stores }: StoreDirectoryProps) {
                       </Badge>
                     ))}
                   </div>
-                  <div className="flex flex-wrap items-center gap-2 text-xs text-white/70">
-                    {store.paymentMethods.slice(0, 5).map((method) => (
-                      <span key={method} className="rounded-full border border-white/20 px-3 py-1">
-                        {method}
-                      </span>
-                    ))}
-                  </div>
                   <div className="flex items-center justify-between rounded-2xl border border-white/20 bg-white/10 px-4 py-3">
                     <div>
                       <p className="text-xs uppercase tracking-[0.3em] text-white/60">From</p>
