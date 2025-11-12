@@ -153,8 +153,8 @@ export function BkmWorkspace() {
 
       <section>
         <SectionHeader
-          title="Operational metrics"
-          description="Track GMV, bonus performance, and webhook health in real time."
+          title="Account pulse"
+          description="Key metrics over the last 24h. Finish the onboarding steps to go live."
         />
         <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
           <Metric label="GMV today" value={formatCurrency(1280000)} trend="▲ 12% vs yesterday" />
@@ -172,10 +172,78 @@ export function BkmWorkspace() {
         </div>
       </section>
 
+      <section>
+        <SectionHeader
+          title="Step 1 · Payout & billing"
+          description="Tell us where to send your revenue. Settlements stay on hold until this section is verified."
+        />
+        <div className="grid gap-6 lg:grid-cols-2">
+          <Card>
+            <CardHeader>
+              <CardTitle>Payout account</CardTitle>
+            </CardHeader>
+            <CardContent className="gap-4">
+              <div className="grid gap-4 md:grid-cols-2">
+                <div>
+                  <Label>Bank</Label>
+                  <Input
+                    value={workspace.settlement.bankName}
+                    onChange={(event) => handleSettlementField("bankName", event.target.value)}
+                  />
+                </div>
+                <div>
+                  <Label>Branch</Label>
+                  <Input
+                    value={workspace.settlement.branch}
+                    onChange={(event) => handleSettlementField("branch", event.target.value)}
+                  />
+                </div>
+                <div>
+                  <Label>Account name</Label>
+                  <Input
+                    value={workspace.settlement.accountName}
+                    onChange={(event) => handleSettlementField("accountName", event.target.value)}
+                  />
+                </div>
+                <div>
+                  <Label>Account number</Label>
+                  <Input
+                    value={workspace.settlement.accountNumber}
+                    onChange={(event) => handleSettlementField("accountNumber", event.target.value)}
+                  />
+                </div>
+              </div>
+              <div>
+                <Label>Payout schedule</Label>
+                <Input
+                  value={workspace.settlement.payoutSchedule}
+                  onChange={(event) => handleSettlementField("payoutSchedule", event.target.value)}
+                />
+              </div>
+              <div className="flex items-center gap-3 text-sm text-white/70">
+                <Badge variant="success">{workspace.settlement.status === "verified" ? "Verified" : "Pending"}</Badge>
+                <span>Funds remit to {workspace.settlement.bankName}</span>
+              </div>
+            </CardContent>
+          </Card>
+          <Card className="bg-white/5">
+            <CardHeader>
+              <CardTitle>Onboarding checklist</CardTitle>
+            </CardHeader>
+            <CardContent className="gap-3 text-sm text-white/70">
+              <p>1. Add payout account & sign the merchant agreement.</p>
+              <p>2. Upload store profile, hero art, and legal links.</p>
+              <p>3. Draft SKUs and promos, then preview the storefront.</p>
+              <p>4. Drop your webhook so orders deliver instantly.</p>
+            </CardContent>
+          </Card>
+        </div>
+      </section>
+
       <section id="store-info">
         <SectionHeader
-          title="BKM-100 Store information"
-          description="Control the visual identity, company profile, and support touchpoints."
+          title="Step 2 · Store profile"
+          description="Control the visual identity, company profile, and customer support touchpoints."
           action={<span className="text-xs text-white/50">Storefront URL: {workspace.store.storefrontUrl}</span>}
         />
         <div className="grid gap-6 lg:grid-cols-[2fr_1fr]">
@@ -296,7 +364,7 @@ export function BkmWorkspace() {
 
       <section id="products">
         <SectionHeader
-          title="BKM-200 Products & bundles"
+          title="Step 3 · Products & bundles"
           description="Manage all web-exclusive SKUs including limited packs, standard top-ups, and subscriptions."
           action={<span className="text-xs text-white/60">{workspace.store.products.length} SKUs</span>}
         />
@@ -427,7 +495,7 @@ export function BkmWorkspace() {
 
       <section id="promotion">
         <SectionHeader
-          title="BKM-300 Promotions"
+          title="Promo badges"
           description="Set bonus or discount rules, generate auto-copy, and highlight App Pay exclusives."
         />
         <div className="grid gap-6 lg:grid-cols-2">
@@ -492,8 +560,8 @@ export function BkmWorkspace() {
 
       <section id="webhook">
         <SectionHeader
-          title="BKM-400 Fulfilment & payouts"
-          description="Define webhook delivery details, user ID fields, and payout accounts."
+          title="Step 4 · Fulfilment & webhooks"
+          description="Drop your webhook URL and signing key so we can send orders the moment payments clear."
         />
         <div className="grid gap-6 lg:grid-cols-2">
           <Card>
@@ -540,52 +608,14 @@ export function BkmWorkspace() {
               </div>
             </CardContent>
           </Card>
-          <Card>
+          <Card className="bg-white/5">
             <CardHeader>
-              <CardTitle>Payout account</CardTitle>
+              <CardTitle>Security notes</CardTitle>
             </CardHeader>
-            <CardContent className="gap-4">
-              <div className="grid gap-4 md:grid-cols-2">
-                <div>
-                  <Label>Bank</Label>
-                  <Input
-                    value={workspace.settlement.bankName}
-                    onChange={(event) => handleSettlementField("bankName", event.target.value)}
-                  />
-                </div>
-                <div>
-                  <Label>Branch</Label>
-                  <Input
-                    value={workspace.settlement.branch}
-                    onChange={(event) => handleSettlementField("branch", event.target.value)}
-                  />
-                </div>
-                <div>
-                  <Label>Account name</Label>
-                  <Input
-                    value={workspace.settlement.accountName}
-                    onChange={(event) => handleSettlementField("accountName", event.target.value)}
-                  />
-                </div>
-                <div>
-                  <Label>Account number</Label>
-                  <Input
-                    value={workspace.settlement.accountNumber}
-                    onChange={(event) => handleSettlementField("accountNumber", event.target.value)}
-                  />
-                </div>
-              </div>
-              <div>
-                <Label>Payout schedule</Label>
-                <Input
-                  value={workspace.settlement.payoutSchedule}
-                  onChange={(event) => handleSettlementField("payoutSchedule", event.target.value)}
-                />
-              </div>
-              <div className="flex items-center gap-3 text-sm text-white/70">
-                <Badge variant="success">PCI-DSS Ready</Badge>
-                <span>HTTPS + signature validation</span>
-              </div>
+            <CardContent className="gap-3 text-sm text-white/70">
+              <p>• Use HTTPS endpoints and rotate secrets when you rotate signing keys.</p>
+              <p>• We retry failed webhooks based on your configured policy (default 0s / 10s / 60s / 5m).</p>
+              <p>• Expose a `/status` endpoint so we can monitor availability.</p>
             </CardContent>
           </Card>
         </div>
@@ -593,7 +623,7 @@ export function BkmWorkspace() {
 
       <section id="legal">
         <SectionHeader
-          title="BKM-500 Legal & compliance"
+          title="Legal & support links"
           description="Paste the required disclosures and we will render them on every storefront."
         />
         <Card>
