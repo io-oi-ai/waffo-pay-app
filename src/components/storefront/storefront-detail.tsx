@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import Link from "next/link";
 import {
   Storefront,
   Product,
@@ -132,7 +133,13 @@ export function StorefrontDetail({ store }: StorefrontDetailProps) {
       <div className="rounded-[32px] border border-white/10 bg-gradient-to-br from-[#141a38] via-[#0b112a] to-[#070b1c] p-8 shadow-[0_60px_150px_rgba(0,0,0,0.55)]">
         <div className="grid gap-6 lg:grid-cols-[2fr_1fr]">
           <div>
-            <p className="text-xs uppercase tracking-[0.4em] text-white/60">Official storefront</p>
+            <Link
+              href="/stores"
+              className="inline-flex items-center gap-2 rounded-full border border-white/10 px-3 py-1 text-xs text-white/70 hover:border-white/50"
+            >
+              ← Back to stores
+            </Link>
+            <p className="mt-3 text-xs uppercase tracking-[0.4em] text-white/60">Official storefront</p>
             <h1 className="mt-3 text-4xl font-semibold text-white">{store.displayName}</h1>
             <p className="mt-1 text-sm text-white/70">{store.gameTitle}</p>
             <p className="mt-3 max-w-2xl text-base text-white/80">{store.summary}</p>
@@ -212,40 +219,50 @@ export function StorefrontDetail({ store }: StorefrontDetailProps) {
               {products.map((product) => (
                 <article
                   key={product.id}
-                  className="flex flex-col justify-between rounded-2xl border border-white/10 bg-white/5 p-5"
+                  className="flex flex-col gap-4 rounded-2xl border border-white/10 bg-white/5 p-5 md:flex-row"
                 >
-                  <div className="space-y-2">
-                    <div className="flex items-center justify-between">
-                      <h4 className="text-xl font-semibold text-white">{product.name}</h4>
-                      {product.promotion && (
-                        <Badge
-                          variant={product.promotion.type === "bonus" ? "success" : "warning"}
-                          className="bg-white/10 text-white"
-                        >
-                          {product.promotion.copy}
-                        </Badge>
-                      )}
+                  <div
+                    className="h-32 w-full rounded-2xl border border-white/10 bg-white/10 md:h-auto md:w-40"
+                    style={{
+                      backgroundImage: `url(${product.icon ?? "/nogizaka-pack-1.png"})`,
+                      backgroundSize: "cover",
+                      backgroundPosition: "center",
+                    }}
+                  />
+                  <div className="flex flex-1 flex-col justify-between gap-3">
+                    <div className="space-y-2">
+                      <div className="flex items-center justify-between">
+                        <h4 className="text-xl font-semibold text-white">{product.name}</h4>
+                        {product.promotion && (
+                          <Badge
+                            variant={product.promotion.type === "bonus" ? "success" : "warning"}
+                            className="bg-white/10 text-white"
+                          >
+                            {product.promotion.copy}
+                          </Badge>
+                        )}
+                      </div>
+                      <p className="text-sm text-white/70">{product.description}</p>
+                      <p className="text-xs text-white/50">Game ID: {product.gameItemId}</p>
                     </div>
-                    <p className="text-sm text-white/70">{product.description}</p>
-                    <p className="text-xs text-white/50">Game ID: {product.gameItemId}</p>
-                  </div>
-                  <div className="mt-4 flex items-end justify-between">
-                    <div>
-                      <p className="text-3xl font-semibold text-white">
-                        {formatCurrency(product.price, product.currency)}
-                      </p>
-                      <p className="text-xs text-white/60">
-                        Includes {product.baseAmount} base
-                        {product.bonusAmount ? ` + ${product.bonusAmount} bonus` : ""}
-                      </p>
+                    <div className="flex items-end justify-between">
+                      <div>
+                        <p className="text-3xl font-semibold text-white">
+                          {formatCurrency(product.price, product.currency)}
+                        </p>
+                        <p className="text-xs text-white/60">
+                          Includes {product.baseAmount} base
+                          {product.bonusAmount ? ` + ${product.bonusAmount} bonus` : ""}
+                        </p>
+                      </div>
+                      <Button
+                        onClick={() => openCheckout(product)}
+                        disabled={isSubmitting && selectedProduct?.id === product.id}
+                        className="bg-white text-[#070b1d]"
+                      >
+                        Buy now
+                      </Button>
                     </div>
-                    <Button
-                      onClick={() => openCheckout(product)}
-                      disabled={isSubmitting && selectedProduct?.id === product.id}
-                      className="bg-white text-[#070b1d]"
-                    >
-                      Buy now
-                    </Button>
                   </div>
                 </article>
               ))}
